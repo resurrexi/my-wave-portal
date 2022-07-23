@@ -16,13 +16,17 @@ contract WavePortal {
     uint256 timestamp;
   }
 
+  Wave[] waves;
+
   constructor() {
     console.log("Yo yo, I am a contract and I am smart");
   }
 
-  function wave() public {
+  function wave(string memory _message) public {
     totalWaves += 1;
-    console.log("%s has waved!", msg.sender);
+    console.log("%s waved with message %s", msg.sender, _message);
+
+    waves.push(Wave(msg.sender, _message, block.timestamp));
   }
 
   function getTotalWaves() public view returns (uint256) {
